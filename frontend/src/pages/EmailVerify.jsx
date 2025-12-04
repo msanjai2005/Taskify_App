@@ -24,7 +24,6 @@ const EmailVerify = () => {
       if(res.data.success){
         setIsAuthenticated(true);
         navigate('/dashboard');
-        window.location.reload();
         toast.success("Email Verified Successfully");
       }else{
         console.log("error in email - else");
