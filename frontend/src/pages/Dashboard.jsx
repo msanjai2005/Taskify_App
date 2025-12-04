@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 import PriorityPieChart from "../charts/PriorityPieChart";
 import TaskStatusBarChart from "../charts/TaskStatusBarChart";
 import TodaysTasks from "../components/Dashboard/TodaysTasks";
-import UpcomingDeadlines from "../components/Dashboard/UpComingDeadlines";
+import UpcomingDeadlines from "../components/Dashboard/UpcomingDeadlines";
 import EmptyDashboard from "../components/Dashboard/EmptyDashboard";
 
 const Dashboard = () => {
