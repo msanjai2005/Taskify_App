@@ -61,17 +61,6 @@ export const AppContextProvider = (props) => {
     setIsLoading(false);
   };
 
-  // Add effect to log when userData actually changes
-  useEffect(() => {
-    console.log("User data updated:", userData);
-    console.log("Is Authenticated:", isAuthenticated);
-  }, [userData, isAuthenticated]);
-
-  // Add effect to log when authentication status changes
-  useEffect(() => {
-    console.log("Auth status changed to:", isAuthenticated);
-  }, [isAuthenticated]);
-
   useEffect(() => {
     // Use async function inside useEffect
     const initializeApp = async () => {
