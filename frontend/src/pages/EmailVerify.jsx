@@ -23,8 +23,8 @@ const EmailVerify = () => {
       const res = await axios.post(backendurl + '/api/auth/email-verify',{otp},{ withCredentials: true });
       if(res.data.success){
         setIsAuthenticated(true);
-        window.location.reload();
         navigate('/dashboard');
+        window.location.reload();
         toast.success("Email Verified Successfully");
       }else{
         console.log("error in email - else");
