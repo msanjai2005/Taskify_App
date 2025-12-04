@@ -4,7 +4,7 @@ import React, { createContext, useEffect, useState, useCallback } from "react";
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
-  const backendurl = "http://localhost:3000";
+  const backendurl = "https://taskifybackend.vercel.app";
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState(null);
