@@ -113,7 +113,7 @@ const EmailVerify = () => {
               type="submit"
               disabled={isLoading}
               className="w-full px-4 py-3 text-white text-[17px] active:scale-[0.98]
-                rounded-lg cursor-pointer font-bold bg-gradient-to-r from-blue-600 to-blue-500 
+                rounded-lg cursor-pointer font-bold bg-linear-to-r from-blue-600 to-blue-500 
                 hover:from-blue-500 hover:to-blue-600 disabled:opacity-70 disabled:cursor-not-allowed
                 transition-all duration-200 ease-in-out mt-4"
             >
