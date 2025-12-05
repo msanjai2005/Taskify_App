@@ -68,7 +68,7 @@ const CreateTask = () => {
         },
         { withCredentials: true }
       );
-
+      console.log(res);
       if (res.data.success) {
         console.log(res.data.task);
 

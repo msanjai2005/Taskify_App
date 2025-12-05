@@ -5,7 +5,8 @@ export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
   // const backendurl = "http://localhost:3000";
-  const backendurl = "https://taskifybackend.vercel.app";
+  // const backendurl = "https://taskifybackend.vercel.app";
+  const backendurl = "https://taskifybackend-pb53.onrender.com";
   const url = "https://scontent.fmaa1-5.fna.fbcdn.net/v/t39.30808-6/310978423_499209305554529_2661145990430677248_n.png?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=MvIIzJkkIw4Q7kNvwGr4xmr&_nc_oc=Adk28fQZ6i6wpKSrB7goo8U-zPPagq4XkC-GYDupSIEi0uVUj89ROsLrIot1YUZXkFZo9SNnT6urIStLO3klQQNn&_nc_zt=23&_nc_ht=scontent.fmaa1-5.fna&_nc_gid=URd_NT7kWPEYSNwXGhuEvA&oh=00_AflouW18OHxm5LQ8FOUURjLVlmGCllgylt96smlZSgznTw&oe=693822E6"
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
