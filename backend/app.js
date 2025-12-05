@@ -35,8 +35,7 @@ app.use('/api/auth',authRouter);
 app.use('/api/task',taskRouter);
 app.use('/api/user',userRouter);
 
-export default app;
 
-// app.listen(PORT,()=>{
-//     console.log('server is running on http://localhost:3000');
-// })
+app.listen(PORT,()=>{
+    console.log('server is running on http://localhost:3000');
+})
