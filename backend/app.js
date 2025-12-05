@@ -17,7 +17,8 @@ await ConnectDB();
 app.use(cors({
     origin:process.env.FRONTEND_URL,
     credentials:true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders:["Content-Type","Authorization"]
 }));
 
 app.use(express.json());
