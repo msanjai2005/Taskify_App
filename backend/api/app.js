@@ -1,12 +1,12 @@
 import express from 'express';
-import { ConnectDB } from './config/dbConfig.js';
+import { ConnectDB } from '../config/dbConfig.js';
 import 'dotenv/config';
-import authRouter from './routers/auth.routes.js';
+import authRouter from '../routers/auth.routes.js';
 import cookieParser from 'cookie-parser';
-import taskRouter from './routers/task.routes.js';
+import taskRouter from '../routers/task.routes.js';
 import cors from 'cors';
-import userRouter from './routers/user.router.js';
-import passport from './config/passport.js';
+import userRouter from '../routers/user.router.js';
+import passport from '../config/passport.js';
 import session from "express-session";
 
 const app = express();
@@ -35,7 +35,7 @@ app.use('/api/auth',authRouter);
 app.use('/api/task',taskRouter);
 app.use('/api/user',userRouter);
 
-
+export default app;
 
 // app.listen(PORT,()=>{
 //     console.log('server is running on http://localhost:3000');
