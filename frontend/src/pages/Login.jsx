@@ -53,9 +53,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogle = async () => {
-    window.location.href = `${backendurl}/api/auth/google`;
-  };
 
   return (
     <div>
@@ -117,15 +114,6 @@ const Login = () => {
             hover:bg-linear-to-r hover:from-blue-400 hover:to-blue-600 transition"
           >
             {isLoading ? <Loading size="h-6 w-6" color="white" /> : "Submit"}
-          </button>
-          <button
-            onClick={handleGoogle}
-            className="w-full h-10 border border-gray-700 rounded-xl flex justify-center items-center gap-2 cursor-pointer hover:scale-101 transition duration-200 active:scale-100"
-          >
-            <img className="w-8 h-8" src={GoogleLogo} alt="" />
-            <h1 className="text-gray-700 font-medium hover:text-gray-800">
-              Login with Google
-            </h1>
           </button>
           <p className="text-gray-700">
             Don't have an account?{" "}

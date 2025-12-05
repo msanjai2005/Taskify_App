@@ -1,53 +1,30 @@
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { session: false }),
-  async (req, res) => {
-    try {
-      // 1. Set JWT cookie
-      await getTokenAndSetcookies(res, req.user._id);
+import express from "express";
+import {
+  isAuth,
+  Login,
+  Logout,
+  Register,
+  ReSendOtp,
+  resendResetPasswordOtp,
+  resetPassword,
+  sendResetOtp,
+  verifyEmail,
+} from "../controller/auth.controller.js";
+import { VerifyToken } from "../middleware/VerifyToken.middleware.js";
 
-      // 2. Generate OTP
-      const otp = generateOtp();
-      const expireTime = Date.now() + 10 * 60 * 1000;
+const router = express.Router();
 
-      // 3. Update user
-      const dbUser = await User.findById(req.user._id);
-      dbUser.verifyOtp = otp;
-      dbUser.verifyOtpExpireAt = expireTime;
-      await dbUser.save();
+router.get("/is-auth", VerifyToken, isAuth);
 
-      // 4. Send email
-      await mailverification(dbUser.email, otp, expireTime);
+router.post("/register", Register);
+router.post("/email-verify", VerifyToken, verifyEmail);
+router.post("/resend-otp", VerifyToken, ReSendOtp);
 
-      // 5. Client-side redirect for Vercel
-      return res.send(`
-        <html>
-          <head>
-            <script>
-              window.location.href = "${process.env.FRONTEND_URL}/dashboard";
-            </script>
-          </head>
-          <body>
-            Redirecting...
-          </body>
-        </html>
-      `);
-    } catch (error) {
-      console.log("google login error");
-      console.log(error.message);
+router.post("/login", Login);
+router.post("/logout", Logout);
 
-      return res.send(`
-        <html>
-          <head>
-            <script>
-              window.location.href = "${process.env.FRONTEND_URL}/login?error=google_failed";
-            </script>
-          </head>
-          <body>
-            Redirecting...
-          </body>
-        </html>
-      `);
-    }
-  }
-);
+router.post("/send-reset-password-otp", sendResetOtp);
+router.post("/reset-password", resetPassword);
+router.post("/resend-reset-password-otp", resendResetPasswordOtp);
+
+export default router;
