@@ -188,7 +188,7 @@ const ProtectedRouteForEmailVerify = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (userData && userData.isVerified) {
+  if (userData && userData?.isVerified) {
     return <Navigate to="/dashboard" replace />;
   }
 

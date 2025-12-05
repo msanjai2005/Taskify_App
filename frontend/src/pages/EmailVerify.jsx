@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 import toast from 'react-hot-toast';
 
 const EmailVerify = () => {
-  const {backendurl, userData, isLoading, setIsLoading, setIsAuthenticated} = useContext(AppContext);
+  const {backendurl, userData,setUserData, isLoading, setIsLoading, setIsAuthenticated} = useContext(AppContext);
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
   const [isResending, setIsResending] = useState(false);
@@ -37,6 +37,8 @@ const EmailVerify = () => {
       
       if(res.data.success){
         setIsAuthenticated(true);
+        setUserData(res.data.user);
+        console.log(res);
         toast.success("Email Verified Successfully");
         navigate('/dashboard');
       } else {

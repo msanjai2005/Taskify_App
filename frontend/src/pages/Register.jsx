@@ -37,7 +37,6 @@ const Register = () => {
         return;
       }
       const res = await axios.post(backendurl + "/api/auth/register", { Name,email,password},{ withCredentials: true });
-      console.log(res);
 
       if (res.data.success) {
         setUserData(res.data.user);
@@ -51,18 +50,21 @@ const Register = () => {
       }
       setError("");
     } catch (error) {
+      setError(error.response?.data?.message);
       console.log(error.response?.data?.message || error.message);
     }finally{
       setIsLoading(false);
     }
   };
-  const handleGoogle = () => {};
+  const handleGoogle = async () => {
+    window.location.href = `${backendurl}/api/auth/google`;
+  };
 
   return (
     <div>
       <Authbar />
       <div className="w-full min-h-[90dvh] p-3 sm:p-10 bg-gray-100 flex justify-center items-center">
-        <form onSubmit={handleSubmit} className="w-full sm:w-[400px] p-5 bg-white rounded-xl shadow flex flex-col gap-2 sm:gap-3 justify-center items-center">
+        <form onSubmit={handleSubmit} className="w-full sm:w-[400px] p-3 sm:p-10 bg-white rounded-xl shadow flex flex-col gap-4 sm:gap-3 justify-center items-center">
           {error && (
             <div className="text-red-500 bg-red-50 w-full py-2 px-3 border border-red-700 rounded text-center">
               {error}
