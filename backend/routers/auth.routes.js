@@ -43,7 +43,7 @@ router.get('/google/callback',
 
             await mailverification(dbUser.email, otp, expireTime);
 
-            return res.redirect(`${process.env.FRONTEND_URL}/email-verify`);
+            return res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
         } catch (error) {
             console.log("google login error");
             console.log(error.message);
