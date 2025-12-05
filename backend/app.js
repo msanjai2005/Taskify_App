@@ -6,6 +6,8 @@ import cookieParser from 'cookie-parser';
 import taskRouter from './routers/task.routes.js';
 import cors from 'cors';
 import userRouter from './routers/user.router.js';
+import passport from './config/passport.js';
+import session from "express-session";
 
 const app = express();
 
@@ -19,6 +21,14 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(session({
+  secret: process.env.JWT_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/auth',authRouter);
 app.use('/api/task',taskRouter);
