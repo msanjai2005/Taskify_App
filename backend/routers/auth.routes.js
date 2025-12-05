@@ -1,59 +1,53 @@
-import express from 'express';
-import { isAuth, Login, Logout, Register, ReSendOtp, resendResetPasswordOtp, resetPassword, sendResetOtp, verifyEmail } from '../controller/auth.controller.js';
-import { VerifyToken } from '../middleware/VerifyToken.middleware.js';
-import passport from 'passport';
-import jwt from 'jsonwebtoken';
-import { getTokenAndSetcookies } from '../utilities/getTokenAndSetcookies.js';
-import { mailverification } from '../send_mails/emails.js';
-import generateOtp from '../utilities/generateOtp.js';
-import { User } from '../models/user.model.js';
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { session: false }),
+  async (req, res) => {
+    try {
+      // 1. Set JWT cookie
+      await getTokenAndSetcookies(res, req.user._id);
 
-const router = express.Router();
+      // 2. Generate OTP
+      const otp = generateOtp();
+      const expireTime = Date.now() + 10 * 60 * 1000;
 
-router.get('/is-auth',VerifyToken,isAuth);
+      // 3. Update user
+      const dbUser = await User.findById(req.user._id);
+      dbUser.verifyOtp = otp;
+      dbUser.verifyOtpExpireAt = expireTime;
+      await dbUser.save();
 
-router.post('/register',Register);
-router.post('/email-verify',VerifyToken,verifyEmail);
-router.post('/resend-otp',VerifyToken,ReSendOtp);
+      // 4. Send email
+      await mailverification(dbUser.email, otp, expireTime);
 
-router.post('/login',Login);
-router.post('/logout',Logout);
+      // 5. Client-side redirect for Vercel
+      return res.send(`
+        <html>
+          <head>
+            <script>
+              window.location.href = "${process.env.FRONTEND_URL}/dashboard";
+            </script>
+          </head>
+          <body>
+            Redirecting...
+          </body>
+        </html>
+      `);
+    } catch (error) {
+      console.log("google login error");
+      console.log(error.message);
 
-router.post('/send-reset-password-otp',sendResetOtp);
-router.post('/reset-password',resetPassword);
-router.post('/resend-reset-password-otp',resendResetPasswordOtp);
-
-
-router.get('/google',passport.authenticate("google",{scope:["profile","email"]}));
-router.get('/google/callback',
-    passport.authenticate("google", { session: false }),
-    async (req, res) => {
-        try {
-            await getTokenAndSetcookies(res, req.user._id);
-
-            const otp = generateOtp();
-            const expireTime = Date.now() + 10 * 60 * 1000;
-
-            const dbUser = await User.findById(req.user._id);
-
-            dbUser.verifyOtp = otp;
-            dbUser.verifyOtpExpireAt = expireTime;
-
-            await dbUser.save();
-
-            await mailverification(dbUser.email, otp, expireTime);
-
-            return res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
-        } catch (error) {
-            console.log("google login error");
-            console.log(error.message);
-            return res.redirect(`${process.env.FRONTEND_URL}/login?error=google_failed`);
-        }
+      return res.send(`
+        <html>
+          <head>
+            <script>
+              window.location.href = "${process.env.FRONTEND_URL}/login?error=google_failed";
+            </script>
+          </head>
+          <body>
+            Redirecting...
+          </body>
+        </html>
+      `);
     }
+  }
 );
-
-router.get('/me',VerifyToken,(req,res)=>{
-    res.json({success:true,user:req.user});
-})
-
-export default router;
