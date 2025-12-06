@@ -80,9 +80,24 @@ const App = () => {
       {isLogout && <Logout />}
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
-        <Route path="/" element={<Home />} />
 
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <RedirectAuthenticatedUser>
+              <Home />
+            </RedirectAuthenticatedUser>
+          }
+        />
+
+       <Route
+          path="/register"
+          element={
+            <RedirectAuthenticatedUser>
+              <Register />
+            </RedirectAuthenticatedUser>
+          }
+        />
 
         <Route
           path="/login"
