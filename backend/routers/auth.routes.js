@@ -34,7 +34,7 @@ router.get('/google/callback',
             // const otp = generateOtp();
             // const expireTime = Date.now() + 10 * 60 * 1000;
 
-            // const dbUser = await User.findById(req.user._id);
+            const dbUser = await User.findById(req.user._id);
 
             // dbUser.verifyOtp = otp;
             // dbUser.verifyOtpExpireAt = expireTime;
