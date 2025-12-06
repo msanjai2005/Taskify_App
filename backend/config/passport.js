@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `https://taskifybackend.vercel.app/api/auth/google/callback`,
+      callbackURL: `https://taskifybackend-pb53.onrender.com/api/auth/google/callback`,
       passReqToCallback: true,
     },
 

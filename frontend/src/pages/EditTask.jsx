@@ -120,9 +120,8 @@ const EditTask = () => {
       );
 
       if (res.data.success) {
-        // Redirect to task details or task list
         navigate(`/tasks/${id}`);
-        window.location.reload();
+        // window.location.reload();
         toast.success("Task Updated");
       }
     } catch (error) {
@@ -168,7 +167,7 @@ const EditTask = () => {
   }
 
   return (
-    <div className="min-h-screen p-4">
+    <div className="min-h-screen sm:p-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
@@ -192,7 +191,7 @@ const EditTask = () => {
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Main Card */}
-          <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+          <div className="bg-white rounded-2xl shadow-lg p-3 sm:p-8">
             {/* Task Name */}
             <div className="mb-8">
               <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -299,7 +298,7 @@ const EditTask = () => {
                     <button
                       type="button"
                       onClick={handleAddTag}
-                      className="px-4 py-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors cursor-pointer"
+                      className="px-2 sm:px-4 py-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors cursor-pointer"
                     >
                       <Plus size={20} />
                     </button>
@@ -343,7 +342,7 @@ const EditTask = () => {
                     <button
                       type="button"
                       onClick={handleAddSubTask}
-                      className="px-4 py-2 bg-blue-100 text-blue-600 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors"
+                      className="px-2 sm:px-4 py-2 bg-blue-100 text-blue-600 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors"
                     >
                       <Plus size={20} />
                     </button>

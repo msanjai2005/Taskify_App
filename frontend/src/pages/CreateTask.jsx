@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { ChevronLeft, Plus, X, Edit2, Check } from "lucide-react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const CreateTask = () => {
   const [title, setTitle] = useState("");
@@ -81,6 +82,7 @@ const CreateTask = () => {
         setTagInput("");
         setSubTasks([]);
         setSubTaskInput("");
+        toast.success("Task created");
       }
     } catch (error) {
       setError(error?.response?.data?.message || "Failed to create task");

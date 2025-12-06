@@ -243,9 +243,9 @@ const ProfileSettings = () => {
             </h1>
             <button
               onClick={handleDelete}
-              className="px-2 py-2 text-red-500 bg-[#ffd7d7] font-semibold flex justify-center items-center gap-1 rounded-xl cursor-pointer hover:bg-red-200 transition"
+              className="w-37 px-2 py-2 text-red-500 bg-[#ffd7d7] font-semibold flex justify-center items-center gap-1 rounded-xl cursor-pointer hover:bg-[#fcbbbb]  transition"
             >
-              {isLoading?(<Loading/>):(<div className=" text-red-500 bg-[#ffd7d7] font-semibold flex justify-center items-center gap-1 rounded-xl cursor-pointer hover:bg-red-200 transition">
+              {isLoading?(<Loading size="w-7 h-7" color="white"/>):(<div className=" font-semibold flex justify-center items-center gap-1 rounded-xl cursor-pointer transition">
                 <MdDelete />
                 Delete Account
               </div>)}

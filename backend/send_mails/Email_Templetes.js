@@ -49,7 +49,7 @@ export const welcomeMailTemplate = (name)=>{
 
           <!-- CTA -->
           <p style="margin:20px 0;">
-            <a href="#" class="btn" target="_blank" rel="noopener">Go to your dashboard</a>
+            <a href="https/taskifybysanjai.vecel.app/dashboard" class="btn" target="_blank" rel="noopener">Go to your dashboard</a>
           </p>
 
           <p class="p small">
@@ -172,11 +172,6 @@ export const otpVerificationTemplate = (name, otp, expiryTime) => {
           <p class="p small">
             This OTP will expire at: <strong>${expiryTime}</strong><br />
             Do not share this code with anyone for security reasons.
-          </p>
-
-          <!-- Button (Optional, if clicking goes to frontend verify page) -->
-          <p style="margin:20px 0;">
-            <a href="#" class="btn" target="_blank" rel="noopener">Verify Email</a>
           </p>
 
           <p class="p small">

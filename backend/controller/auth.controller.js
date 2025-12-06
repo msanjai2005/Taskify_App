@@ -29,7 +29,8 @@ export const Register = async(req,res)=>{
         user.token = token;
         await user.save();
 
-        await mailverification(user.email, user.verifyOtp, user.verifyOtpExpireAt);
+        // await mailverification(user.email, user.verifyOtp, user.verifyOtpExpireAt);
+        await welcomeMail(user.name,user.email);
 
         console.log(`User successfilly created ${user.name}`);
         return res.status(201).json({

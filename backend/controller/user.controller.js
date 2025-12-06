@@ -1,4 +1,5 @@
 import { User } from "../models/user.model.js";
+import { Task } from "../models/task.model.js"
 import { comparePassword, hashedPassword } from "../utilities/hashPassword.js";
 
 export const updateProfile = async (req, res) => {
@@ -94,6 +95,8 @@ export const deleteProfile = async (req, res) => {
         .status(404)
         .json({ success: false, message: "User not found" });
     }
+
+    await Task.deleteMany({ userId: req.userId });
 
     return res.status(200).json({
       success: true,
