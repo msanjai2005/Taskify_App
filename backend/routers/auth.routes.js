@@ -31,17 +31,18 @@ router.get('/google/callback',
         try {
             await getTokenAndSetcookies(res, req.user._id);
 
-            const otp = generateOtp();
-            const expireTime = Date.now() + 10 * 60 * 1000;
+            // const otp = generateOtp();
+            // const expireTime = Date.now() + 10 * 60 * 1000;
 
-            const dbUser = await User.findById(req.user._id);
+            // const dbUser = await User.findById(req.user._id);
 
-            dbUser.verifyOtp = otp;
-            dbUser.verifyOtpExpireAt = expireTime;
+            // dbUser.verifyOtp = otp;
+            // dbUser.verifyOtpExpireAt = expireTime;
 
-            await dbUser.save();
+            // await dbUser.save();
 
-            await mailverification(dbUser.email, otp, expireTime);
+            // await mailverification(dbUser.email, otp, expireTime);
+            await welcomeMail(dbUser.name,dbUser.email);
 
             return res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
         } catch (error) {
