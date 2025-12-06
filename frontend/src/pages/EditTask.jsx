@@ -121,9 +121,9 @@ const EditTask = () => {
       );
 
       if (res.data.success) {
-        window.location.reload();
         navigate(`/tasks/${id}`);
         toast.success("Task Updated");
+        window.location.reload();
       }
     } catch (error) {
       setError(error?.response?.data?.message || "Failed to update task");
