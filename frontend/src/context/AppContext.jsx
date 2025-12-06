@@ -74,14 +74,12 @@ export const AppContextProvider = (props) => {
     initializeApp();
   }, [checkAuth]); // Add checkAuth as dependency
 
-  // Add a separate effect to get tasks when authentication changes
   useEffect(() => {
     if (isAuthenticated && userData) {
       getTasks();
     }
   }, [isAuthenticated, userData]);
 
-  // Helper function to update user data
   const updateUserData = (newData) => {
     setUserData(prev => ({
       ...prev,
@@ -95,7 +93,7 @@ export const AppContextProvider = (props) => {
     setIsAuthenticated,
     userData,
     setUserData,
-    updateUserData, // Add this helper function
+
     tasks,
     setTasks,
     isLoading,

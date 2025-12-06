@@ -124,7 +124,7 @@ const Register = () => {
           >
             {isLoading?(<Loading size="h-6 w-6" color="white"/>):"Submit"}
           </button>
-          <button
+          <div
             onClick={handleGoogle}
             className="w-full h-10 border border-gray-700 rounded-xl flex justify-center items-center gap-2 cursor-pointer hover:scale-101 transition duration-200 active:scale-100"
           >
@@ -132,7 +132,7 @@ const Register = () => {
             <h1 className="text-gray-700 font-medium hover:text-gray-800">
               Continue with Google
             </h1>
-          </button>
+          </div>
           <p className="text-gray-700">
             Already have an account?{" "}
             <span
