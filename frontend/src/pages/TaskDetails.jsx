@@ -15,9 +15,10 @@ import {
 import { useNavigate, useParams } from "react-router";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
+import Loading from "../components/Loading";
 
 const TaskDetails = () => {
-  const { backendurl, setIsLoading } = useContext(AppContext);
+  const { backendurl, isLoading, setIsLoading } = useContext(AppContext);
 
   const [task, setTask] = useState(null);
 
@@ -49,7 +50,6 @@ const TaskDetails = () => {
       });
 
       if (res.data.success) {
-        console.log(res.data.task);
         setTask(res.data.task);
       }
     } catch (error) {
@@ -84,6 +84,9 @@ const TaskDetails = () => {
     getTaskDetails();
   }, [id]);
 
+  if(isLoading){
+    return <Loading/>
+  }
   return (
     <div className="min-h-screen sm:p-6">
       <div className="max-w-4xl mx-auto">

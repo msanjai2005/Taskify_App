@@ -4,6 +4,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Loading from "../components/Loading";
 
 const EditTask = () => {
   const { id } = useParams();
@@ -21,7 +22,7 @@ const EditTask = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const { backendurl, setIsLoading } = useContext(AppContext);
+  const { backendurl, setIsLoading, isLoading } = useContext(AppContext);
 
   // Fetch task data on component mount
   useEffect(() => {
@@ -120,8 +121,8 @@ const EditTask = () => {
       );
 
       if (res.data.success) {
+        window.location.reload();
         navigate(`/tasks/${id}`);
-        // window.location.reload();
         toast.success("Task Updated");
       }
     } catch (error) {
@@ -416,7 +417,7 @@ const EditTask = () => {
                 type="submit"
                 className="px-8 py-3 bg-blue-600 text-white rounded-xl cursor-pointer hover:bg-blue-700 transition-colors font-medium"
               >
-                Update Task
+                {isLoading ? <Loading color="white" size="w-8 h-8" /> : "Update Task"}
               </button>
             </div>
           </div>

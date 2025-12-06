@@ -43,6 +43,7 @@ const ProfileSettings = () => {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading,setLoading] = useState("");
 
   useEffect(() => {
     if (userData) {
@@ -215,7 +216,7 @@ const ProfileSettings = () => {
   };
 
   const handleDelete = async () => {
-    setIsLoading(true);
+    setLoading(true);
     try {
       const res = await axios.delete(`${backendurl}/api/user/delete-profile`, {
         withCredentials: true,
@@ -225,11 +226,12 @@ const ProfileSettings = () => {
         window.location.reload();
         setError("");
         navigate("/");
+        toast.success("Account is Deleted");
       }
     } catch (error) {
       setError(error?.response?.data?.message || "Error deleting account");
     }
-    setIsLoading(false);
+    setLoading(false);
   };
 
   return (
@@ -245,7 +247,7 @@ const ProfileSettings = () => {
               onClick={handleDelete}
               className="w-37 px-2 py-2 text-red-500 bg-[#ffd7d7] font-semibold flex justify-center items-center gap-1 rounded-xl cursor-pointer hover:bg-[#fcbbbb]  transition"
             >
-              {isLoading?(<Loading size="w-7 h-7" color="white"/>):(<div className=" font-semibold flex justify-center items-center gap-1 rounded-xl cursor-pointer transition">
+              {loading?(<Loading size="w-7 h-7" color="white"/>):(<div className=" font-semibold flex justify-center items-center gap-1 rounded-xl cursor-pointer transition">
                 <MdDelete />
                 Delete Account
               </div>)}

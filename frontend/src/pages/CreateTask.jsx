@@ -71,8 +71,7 @@ const CreateTask = () => {
       );
       console.log(res);
       if (res.data.success) {
-        console.log(res.data.task);
-
+        window.location.reload();        
         setTitle("");
         setDescription("");
         setPriority("medium");
