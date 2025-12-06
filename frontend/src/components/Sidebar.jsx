@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Avather from "../assets/profileImage.png";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BiTask } from "react-icons/bi";
 import { MdAddToPhotos, MdLogout, MdOutlineLogout } from "react-icons/md";
 import { RiUserSettingsFill } from "react-icons/ri";
 import { AppContext } from "../context/AppContext";
-import Logout from "./Logout";
 
 const Sidebar = ({ isOpen }) => {
 
@@ -30,7 +28,7 @@ const Sidebar = ({ isOpen }) => {
         {/* HEADER */}
         <div className="w-full p-5 flex flex-col justify-start items-center">
           <div className="w-15 h-15 rounded-full bg-blue-200 text-3xl text-blue-700 font-bold flex justify-center items-center">
-            {userData?.name?.split(" ")[0][0]}{userData?.name?.split(" ")[1][0]}
+            {userData?.name?.split(" ")[0][0]}{userData?.name?.split(" ").length > 1 ? userData?.name?.split(" ")[1][0]:""}
           </div>
           <p className="font-medium text-blue-900 mt-2">{userData?.name || "guest"}</p>
           <p className="font-medium text-gray-400 text-sm">
