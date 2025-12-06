@@ -29,9 +29,6 @@ export const AppContextProvider = (props) => {
         setUserData(res.data.user);
         setIsAuthenticated(true);
         
-        // Log after state update (though React batches these)
-        console.log("User data set:", res.data.user);
-        console.log("Is Verified:", res.data.user.isVerified);
       } else {
         // If no user data in response
         setUserData(null);
